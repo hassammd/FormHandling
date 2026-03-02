@@ -11,8 +11,8 @@ import SelectAllCheckBoxes from "./Components/SelectAllCheckBox";
 function App() {
   return (
     <>
-      {/* <Form /> */}
-      <CheckBox />
+      <Form />
+      {/* <CheckBox /> */}
       {/* <MultipleCheckBox /> */}
       {/* <SelectAll /> */}
       {/* <FormHandler /> */}

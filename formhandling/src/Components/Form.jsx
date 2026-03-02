@@ -1,54 +1,57 @@
 import { useState } from "react";
 
 const Form = () => {
-  const [data, setData] = useState({
+  const [fromData, setFormData] = useState({
     name: "",
-    email: "",
-    phone: "",
+    tc: false,
   });
 
-  const inputHandler = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+  const [showData, setShowData] = useState(false);
+
+  const onChnageHandler = (e) => {
+    const { name, value, checked, type } = e.target;
+    setFormData({ ...fromData, [name]: type === "checkbox" ? checked : value });
   };
 
-  const ClearHandler = () => {
-    setData({
-      name: "",
-      email: "",
-      phone: "",
-    });
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (fromData.name !== "" && fromData.tc === true) {
+      setShowData(true);
+    }
   };
 
   return (
     <>
-      <h1> Form</h1>
+      <h2>Form</h2>
 
-      <h4>{data.name}</h4>
-      <h2>{data.email}</h2>
-      <h2>{data.phone}</h2>
-      <input
-        type="text"
-        placeholder="Enter Your Name"
-        value={data.name}
-        name="name"
-        onChange={inputHandler}
-      />
-      <input
-        type="text"
-        placeholder="Enter Your Email"
-        value={data.email}
-        name="email"
-        onChange={inputHandler}
-      />
-      <input
-        type="number"
-        value={data.phone}
-        name="phone"
-        placeholder="Phone Number"
-        onChange={inputHandler}
-      />
-      <button onClick={ClearHandler}>Clear</button>
+      <form action="" onSubmit={submitHandler}>
+        <label htmlFor="">
+          Name
+          <input
+            type="text"
+            name="name"
+            id=""
+            placeholder="Enter your Name"
+            onChange={onChnageHandler}
+          />
+        </label>
+        <label htmlFor="">
+          <input
+            type="checkbox"
+            name="tc"
+            id=""
+            checked={fromData.tc}
+            placeholder="Enter your Name"
+            onChange={onChnageHandler}
+          />
+          Term and Conditions
+        </label>
+        <br></br>
+        <input type="submit" />
+      </form>
+
+      {showData && <h4>Name: {fromData.name}</h4>}
+      {showData && <h4>Term and Conditions Accepted</h4>}
     </>
   );
 };
