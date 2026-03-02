@@ -28,10 +28,23 @@ const CheckBox = () => {
     <>
       <h2>THis is CheckBox</h2>
 
+      {Object.keys(languages).map((items) => {
+        return (
+          <label key={items} htmlFor="">
+            <input
+              type="checkbox"
+              checked={languages[items]}
+              name={items}
+              onChange={onChangeHandler}
+            />
+            {items}
+          </label>
+        );
+      })}
+
       <label htmlFor="">
         <input
           type="checkbox"
-          name="html"
           checked={selectAll}
           onChange={selectAllHandler}
         />
@@ -39,34 +52,6 @@ const CheckBox = () => {
       </label>
       <br></br>
       <br></br>
-
-      <label htmlFor="">
-        <input
-          type="checkbox"
-          checked={languages.html}
-          name="html"
-          onChange={onChangeHandler}
-        />
-        html
-      </label>
-      <label htmlFor="">
-        <input
-          type="checkbox"
-          name="css"
-          checked={languages.css}
-          onChange={onChangeHandler}
-        />
-        Css
-      </label>
-      <label htmlFor="">
-        <input
-          type="checkbox"
-          name="react"
-          checked={languages.react}
-          onChange={onChangeHandler}
-        />
-        React
-      </label>
 
       {languages.html && <h4>Html checked</h4>}
       {languages.css && <h4>Css checked</h4>}
